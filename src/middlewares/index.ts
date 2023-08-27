@@ -1,3 +1,4 @@
 import errorHandler from "./errorHandler.middleware";
+import validateBody from "./validateBody.middleware";
 
-export { errorHandler };
+export default { errorHandler, validateBody };
