@@ -5,9 +5,9 @@ const loginController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const userLogged = await sessionServices.create(req.body);
+  const token: string = await sessionServices.create(req.body);
 
-  return res.status(200).json(userLogged);
+  return res.status(200).json({ token });
 };
 
 export { loginController };
