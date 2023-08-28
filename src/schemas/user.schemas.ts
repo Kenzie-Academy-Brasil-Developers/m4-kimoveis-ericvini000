@@ -1,4 +1,3 @@
-
 import { z } from "zod";
 
 const userSchema = z.object({
@@ -19,7 +18,7 @@ const userSchemaCreate = userSchema.omit({
   deletedAt: true,
 });
 
-const userSchemaUpdate = userSchemaCreate.partial();
+const userSchemaUpdate = userSchemaCreate.omit({ admin: true }).partial();
 
 const userSchemaReturn = userSchema.omit({ password: true });
 

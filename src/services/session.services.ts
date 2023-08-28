@@ -16,7 +16,7 @@ const create = async (payload: TSession): Promise<string> => {
   const verifyPassword = await compare(password, user.password);
 
   if (!verifyPassword || user.email !== email) {
-    throw new AppError("Wrong email/password", 400);
+    throw new AppError("Wrong email/password", 401);
   }
 
   const token: string = sign(

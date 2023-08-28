@@ -17,19 +17,27 @@ userRouter.post(
   createUserController
 );
 
-userRouter.get("", readUsersController);
+userRouter.get(
+  "",
+  middlewares.authenticateToken,
+  middlewares.verifyIsAdmin,
+  readUsersController
+);
 
 userRouter.patch(
   "/:id",
+  middlewares.authenticateToken,
   middlewares.verifyUserIdExists,
   middlewares.verifyEmailExists,
+  middlewares.verifyUserPermission,
   updateUserController
 );
 
 userRouter.delete(
   "/:id",
+  middlewares.authenticateToken,
+  middlewares.verifyIsAdmin,
   middlewares.verifyUserIdExists,
-  middlewares.userAlreadyDeleted,
   destroyUserController
 );
 

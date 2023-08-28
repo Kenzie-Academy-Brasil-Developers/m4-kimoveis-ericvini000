@@ -8,6 +8,7 @@ import {
 
 import sessionSchema from "./session.schemas";
 
+import { categorySchema, categorySchemaCreate } from "./category.schemas";
 export {
   userSchema,
   userSchemaCreate,
@@ -15,4 +16,6 @@ export {
   userSchemaReturn,
   userSchemaUpdate,
   sessionSchema,
+  categorySchema,
+  categorySchemaCreate,
 };

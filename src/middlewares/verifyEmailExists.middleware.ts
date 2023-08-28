@@ -13,7 +13,7 @@ export default async (
 
   const emailExists = await userRepository.findOneBy({ email: email });
 
-  if (emailExists) throw new AppError("Email already exists.");
+  if (emailExists) throw new AppError("Email already exists.", 409);
 
   return next();
 };
