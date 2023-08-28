@@ -6,4 +6,6 @@ import {
   TUserUpdate,
 } from "./user.interfaces";
 
-export { TUser, TUserCreate, TUserRead, TUserReturn, TUserUpdate };
+import { TSession } from "./session.interface";
+
+export { TUser, TUserCreate, TUserRead, TUserReturn, TUserUpdate, TSession};
