@@ -6,6 +6,10 @@ import {
 } from "./user.controllers";
 
 import { loginController } from "./session.controllers";
+import {
+  createCategoryController,
+  readCategoryController,
+} from "./category.controllers";
 
 export {
   createUserController,
@@ -13,4 +17,6 @@ export {
   updateUserController,
   destroyUserController,
   loginController,
+  createCategoryController,
+  readCategoryController,
 };

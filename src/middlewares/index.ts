@@ -5,6 +5,7 @@ import verifyEmailExists from "./verifyEmailExists.middleware";
 import authenticateToken from "./authenticateToken.middleware";
 import verifyIsAdmin from "./verifyIsAdmin.middleware";
 import verifyUserPermission from "./verifyUserPermission.middleware";
+import verifyCategoryName from "./verifyCategoryName.middleware";
 
 export default {
   errorHandler,
@@ -14,4 +15,5 @@ export default {
   authenticateToken,
   verifyIsAdmin,
   verifyUserPermission,
+  verifyCategoryName,
 };
