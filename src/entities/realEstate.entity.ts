@@ -11,7 +11,7 @@ class RealEstate {
     @Column({type:"decimal", default:0})
     value:number;
 
-    @Column({type: "number"})
+    @Column({type: "float"})
     size:number;
 
     @CreateDateColumn()

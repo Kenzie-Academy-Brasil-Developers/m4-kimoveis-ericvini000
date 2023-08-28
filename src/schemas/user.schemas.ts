@@ -6,12 +6,17 @@ const userSchema = z.object({
   email: z.string().max(45),
   admin: z.boolean().default(false),
   password: z.string().max(120),
-  createdAt: z.date(),
-  updatedAt: z.date(),
-  deletedAt: z.date().nullable(),
+  createdAt: z.string().or(z.date()),
+  updatedAt: z.string().or(z.date()),
+  deletedAt: z.string().or(z.date()).nullable(),
 });
 
-const userSchemaCreate = userSchema.omit({ id: true });
+const userSchemaCreate = userSchema.omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+  deletedAt: true,
+});
 
 const userSchemaUpdate = userSchemaCreate.partial();
 

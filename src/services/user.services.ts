@@ -11,6 +11,7 @@ import { userSchemaRead, userSchemaReturn } from "../schemas";
 
 const create = async (payload: TUserCreate): Promise<TUserReturn> => {
   const userCreated: TUserReturn = userRepository.create(payload);
+  console.log(new Date());
 
   await userRepository.save(userCreated);
 

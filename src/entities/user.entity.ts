@@ -1,5 +1,6 @@
 import { getRounds, hashSync } from "bcryptjs";
 import {
+  AfterSoftRemove,
   BeforeInsert,
   BeforeUpdate,
   Column,
@@ -14,7 +15,7 @@ class User {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
-  @Column({ type: "varchar", length: 45, unique: true })
+  @Column({ type: "varchar", length: 45 })
   name: string;
 
   @Column({ type: "varchar", length: 45, unique: true })
@@ -27,21 +28,36 @@ class User {
   password: string;
 
   @CreateDateColumn({ type: "date" })
-  createdAt: Date;
+  createdAt: Date | string;
 
   @UpdateDateColumn({ type: "date" })
-  updatedAt: Date;
+  updatedAt: Date | string;
 
   @UpdateDateColumn({ type: "date", nullable: true })
-  deletedAt: Date | null;
+  deletedAt: Date | string | null;
 
   @BeforeInsert()
-  @BeforeUpdate()
+  insertCreatedAt() {
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+  }
+
+  @BeforeInsert()
   hashPassword() {
-    const getPassword: number = getRounds(this.password);
-    if (!getPassword) {
+    const rounds: number = getRounds(this.password);
+    if (!rounds) {
       this.password = hashSync(this.password, 10);
     }
+  }
+
+  @BeforeUpdate()
+  insertUpdatedAt() {
+    this.updatedAt = new Date();
+  }
+
+  @AfterSoftRemove()
+  insertDeletedAt() {
+    this.deletedAt = new Date();
   }
 }
 
