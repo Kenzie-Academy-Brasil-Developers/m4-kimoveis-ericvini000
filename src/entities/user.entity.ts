@@ -1,10 +1,10 @@
 import { getRounds, hashSync } from "bcryptjs";
 import {
-  AfterSoftRemove,
   BeforeInsert,
   BeforeUpdate,
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -33,16 +33,11 @@ class User {
   @UpdateDateColumn({ type: "date" })
   updatedAt: Date | string;
 
-  @UpdateDateColumn({ type: "date", nullable: true })
+  @DeleteDateColumn({ type: "date", nullable: true })
   deletedAt: Date | string | null;
 
   @BeforeInsert()
-  insertCreatedAt() {
-    this.createdAt = new Date();
-    this.updatedAt = new Date();
-  }
-
-  @BeforeInsert()
+  @BeforeUpdate()
   hashPassword() {
     const rounds: number = getRounds(this.password);
     if (!rounds) {
@@ -50,15 +45,6 @@ class User {
     }
   }
 
-  @BeforeUpdate()
-  insertUpdatedAt() {
-    this.updatedAt = new Date();
-  }
-
-  @AfterSoftRemove()
-  insertDeletedAt() {
-    this.deletedAt = new Date();
-  }
 }
 
 export default User;

@@ -1,4 +1,3 @@
-import { hash } from "bcryptjs";
 import {
   TUser,
   TUserCreate,
@@ -11,7 +10,6 @@ import { userSchemaRead, userSchemaReturn } from "../schemas";
 
 const create = async (payload: TUserCreate): Promise<TUserReturn> => {
   const userCreated: TUserReturn = userRepository.create(payload);
-  console.log(new Date());
 
   await userRepository.save(userCreated);
 
@@ -24,8 +22,13 @@ const read = async (): Promise<TUserRead> => {
   return userSchemaRead.parse(userList);
 };
 
-const update = async (user: TUser, payload: TUserUpdate): Promise<TUser> => {
-  return await userRepository.save({ ...user, ...payload });
+const update = async (
+  user: TUser,
+  payload: TUserUpdate
+): Promise<TUserReturn> => {
+  const userUpdated = await userRepository.save({ ...user, ...payload });
+  
+  return userSchemaReturn.parse(userUpdated);
 };
 
 const destroy = async (user: TUser): Promise<void> => {

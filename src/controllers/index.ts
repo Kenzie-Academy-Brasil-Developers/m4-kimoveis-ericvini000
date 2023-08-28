@@ -2,12 +2,12 @@ import {
   createUserController,
   readUsersController,
   updateUserController,
-  deleteUserController,
+  destroyUserController,
 } from "./user.controllers";
 
 export {
   createUserController,
   readUsersController,
   updateUserController,
-  deleteUserController,
+  destroyUserController,
 };

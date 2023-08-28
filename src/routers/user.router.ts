@@ -3,7 +3,7 @@ import middlewares from "../middlewares";
 import { userSchemaCreate } from "../schemas";
 import {
   createUserController,
-  deleteUserController,
+  destroyUserController,
   readUsersController,
   updateUserController,
 } from "../controllers";
@@ -26,6 +26,11 @@ userRouter.patch(
   updateUserController
 );
 
-userRouter.delete("/:id", middlewares.verifyUserIdExists, deleteUserController);
+userRouter.delete(
+  "/:id",
+  middlewares.verifyUserIdExists,
+  middlewares.userAlreadyDeleted,
+  destroyUserController
+);
 
 export default userRouter;

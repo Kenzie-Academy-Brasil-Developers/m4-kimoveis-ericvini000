@@ -30,7 +30,7 @@ const updateUserController = async (
   return res.status(200).json(userUpdated);
 };
 
-const deleteUserController = async (
+const destroyUserController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
@@ -43,5 +43,5 @@ export {
   createUserController,
   readUsersController,
   updateUserController,
-  deleteUserController,
+  destroyUserController,
 };
