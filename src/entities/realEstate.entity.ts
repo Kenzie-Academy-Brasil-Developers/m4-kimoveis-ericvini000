@@ -7,9 +7,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   JoinColumn,
+  OneToMany,
 } from "typeorm";
-import Address from "./addresses.entity";
-import Category from "./category.entity";
+import { Address, Category, Schedule } from "../entities";
 
 @Entity("realEstates")
 class RealEstate {
@@ -20,7 +20,7 @@ class RealEstate {
   sold: boolean;
 
   @Column({ type: "decimal", default: 0 })
-  value: number;
+  value: number | string;
 
   @Column({ type: "float" })
   size: number;
@@ -31,12 +31,15 @@ class RealEstate {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => Address, (address) => address.id)
+  @OneToMany(() => Schedule, (schedule) => schedule.realEstate)
+  schedule: Schedule[];
+
+  @OneToOne(() => Address, (address) => address.realEstate)
   @JoinColumn()
   address: Address;
 
-  @ManyToOne(() => Category, (category) => category.id)
-  category: Category[];
+  @ManyToOne(() => Category, (category) => category.realEstate)
+  category: Category;
 }
 
 export default RealEstate;

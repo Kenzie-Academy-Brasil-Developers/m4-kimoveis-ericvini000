@@ -8,6 +8,8 @@ const scheduleSchema = z.object({
   userId: z.number().positive(),
 });
 
+const scheduleSchemaCreate = scheduleSchema.omit({ id: true });
+
 const scheduleSchemaRead = scheduleSchema.array();
 
-export { scheduleSchema, scheduleSchemaRead };
+export { scheduleSchema, scheduleSchemaRead, scheduleSchemaCreate };

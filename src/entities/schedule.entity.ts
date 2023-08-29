@@ -1,4 +1,5 @@
 import {
+  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
@@ -13,16 +14,22 @@ class Schedule {
   id: number;
 
   @CreateDateColumn({ type: "date" })
-  date: Date;
+  date: string | Date;
 
-  @Column({ type: "timestamp" })
-  hour: string;
+  @Column({ type: "date" })
+  hour: string | Date;
 
   @ManyToOne(() => RealEstate, (realEstate) => realEstate.id)
-  realEstate: RealEstate[];
+  realEstate: RealEstate;
 
-  @ManyToOne(() => User, (user) => user.id)
-  user: User[];
+  @ManyToOne(() => User, (user) => user.schedule)
+  user: User;
+
+  @BeforeInsert()
+  getTime() {
+    this.date = new Date();
+    this.hour = new Date();
+  }
 }
 
 export default Schedule;

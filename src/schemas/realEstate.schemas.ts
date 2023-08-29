@@ -14,6 +14,7 @@ const realEstateSchema = z.object({
 
 const realEstateSchemaCreate = realEstateSchema.omit({
   id: true,
+  sold: true,
   updatedAt: true,
   createdAt: true,
 });

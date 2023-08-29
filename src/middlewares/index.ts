@@ -6,6 +6,7 @@ import authenticateToken from "./authenticateToken.middleware";
 import verifyIsAdmin from "./verifyIsAdmin.middleware";
 import verifyUserPermission from "./verifyUserPermission.middleware";
 import verifyCategoryName from "./verifyCategoryName.middleware";
+import verifyRealEstateId from "./verifyRealEstateId.middleware";
 
 export default {
   errorHandler,
@@ -16,4 +17,5 @@ export default {
   verifyIsAdmin,
   verifyUserPermission,
   verifyCategoryName,
+  verifyRealEstateId,
 };

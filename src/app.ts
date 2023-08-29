@@ -2,7 +2,13 @@ import "reflect-metadata";
 import "express-async-errors";
 import express from "express";
 import middlewares from "./middlewares";
-import { categoryRouter, sessionRouter, userRouter } from "./routers";
+import {
+  categoryRouter,
+  realEstateRouter,
+  scheduleRouter,
+  sessionRouter,
+  userRouter,
+} from "./routers";
 
 const app = express();
 app.use(express.json());
@@ -12,6 +18,10 @@ app.use("/users", userRouter);
 app.use("/login", sessionRouter);
 
 app.use("/categories", categoryRouter);
+
+app.use("/realEstate", realEstateRouter);
+
+app.use("/schedules", scheduleRouter);
 
 app.use(middlewares.errorHandler);
 
