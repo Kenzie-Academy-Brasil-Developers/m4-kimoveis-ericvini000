@@ -27,7 +27,7 @@ const update = async (
   payload: TUserUpdate
 ): Promise<TUserReturn> => {
   const userUpdated = await userRepository.save({ ...user, ...payload });
-  
+
   return userSchemaReturn.parse(userUpdated);
 };
 

@@ -8,7 +8,9 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
+import Schedule from "./schedule.entity";
 
 @Entity("users")
 class User {
@@ -44,7 +46,6 @@ class User {
       this.password = hashSync(this.password, 10);
     }
   }
-
 }
 
 export default User;

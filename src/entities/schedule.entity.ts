@@ -18,11 +18,11 @@ class Schedule {
   @Column({ type: "timestamp" })
   hour: string;
 
-  @ManyToOne(() => RealEstate)
-  realEstate: number;
+  @ManyToOne(() => RealEstate, (realEstate) => realEstate.id)
+  realEstate: RealEstate[];
 
-  @ManyToOne(() => User)
-  user: number;
+  @ManyToOne(() => User, (user) => user.id)
+  user: User[];
 }
 
 export default Schedule;
