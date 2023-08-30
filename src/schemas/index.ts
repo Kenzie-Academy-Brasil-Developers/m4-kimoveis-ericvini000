@@ -20,6 +20,7 @@ import {
   scheduleSchema,
   scheduleSchemaCreate,
   scheduleSchemaRead,
+  scheduleSchemaPayload,
 } from "./schedule.schemas";
 import { addressSchema, addressSchemaCreate } from "./address.schemas";
 
@@ -41,4 +42,5 @@ export {
   addressSchema,
   addressSchemaCreate,
   scheduleSchemaCreate,
+  scheduleSchemaPayload,
 };

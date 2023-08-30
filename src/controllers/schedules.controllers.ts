@@ -5,16 +5,18 @@ const createScheduleController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const { decoded, realEstateId } = res.locals;
-  console.log(decoded)
+  const {
+    decoded: { sub },
+    realEstate,
+  } = res.locals;
 
-  // const newSchedule = await scheduleServices.create(
-  //   req.body,
-  //   userId,
-  //   realEstateId
-  // );
+  const newSchedule = await scheduleServices.create(
+    req.body,
+    Number(sub),
+    realEstate
+  );
 
-  return res.status(201).json();
+  return res.status(201).json(newSchedule);
 };
 
 const retrieveScheduleController = async (req: Request, res: Response) => {};

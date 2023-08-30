@@ -1,35 +1,23 @@
-import {
-  BeforeInsert,
-  Column,
-  CreateDateColumn,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
-import { RealEstate, User } from "../entities";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import RealEstate from "./realEstate.entity";
+import User from "./user.entity";
 
 @Entity("schedules")
 class Schedule {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
-  @CreateDateColumn({ type: "date" })
-  date: string | Date;
+  @Column({ type: "varchar", length: 10 })
+  date: string;
 
-  @Column({ type: "date" })
-  hour: string | Date;
+  @Column({ type: "varchar", length: 5 })
+  hour: string;
 
-  @ManyToOne(() => RealEstate, (realEstate) => realEstate.id)
+  @ManyToOne(() => RealEstate)
   realEstate: RealEstate;
 
   @ManyToOne(() => User, (user) => user.schedule)
   user: User;
-
-  @BeforeInsert()
-  getTime() {
-    this.date = new Date();
-    this.hour = new Date();
-  }
 }
 
 export default Schedule;

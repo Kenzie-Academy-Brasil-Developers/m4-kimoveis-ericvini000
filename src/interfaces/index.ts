@@ -9,6 +9,7 @@ import {
   TSchedule,
   TScheduleCreate,
   TScheduleRead,
+  TSchedulePayload,
 } from "./schedules.interfaces";
 import { TSession } from "./session.interface";
 import { TCategory, TCategoryCreate } from "./category.interface";
@@ -30,6 +31,7 @@ export {
   TSchedule,
   TScheduleCreate,
   TScheduleRead,
+  TSchedulePayload,
   TRealEstate,
   TRealEstateCreate,
   TRealEstateRead,

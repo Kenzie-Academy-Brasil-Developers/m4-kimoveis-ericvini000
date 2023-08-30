@@ -7,13 +7,13 @@ export default async (
   res: Response,
   next: NextFunction
 ): Promise<Response | void> => {
-  const realEstateId: number = parseInt(req.params.id);
+  const realEstateId: number = Number(req.body.realEstateId);
 
   const realEstate: any = await realEstateRepo.findOneBy({ id: realEstateId });
 
   if (!realEstate) throw new AppError("Estate not found.", 404);
 
-  res.locals = { ...res.locals, realEstateId };
+  res.locals = { ...res.locals, realEstateId, realEstate };
 
   return next();
 };
