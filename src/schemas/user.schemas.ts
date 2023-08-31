@@ -20,9 +20,12 @@ const userSchemaCreate = userSchema.omit({
 
 const userSchemaReturn = userSchema.omit({ password: true });
 
-const userSchemaUpdateReturn = userSchema.omit({
-  admin: true,
+const adminSchemaUpdateReturn = userSchema.omit({
   password: true,
+});
+
+const userSchemaUpdateReturn = adminSchemaUpdateReturn.omit({
+  admin: true,
   createdAt: true,
   updatedAt: true,
   deletedAt: true,
@@ -41,4 +44,5 @@ export {
   userSchemaReturn,
   userSchemaUpdateReturn,
   userSchemaUpdatePayload,
+  adminSchemaUpdateReturn,
 };

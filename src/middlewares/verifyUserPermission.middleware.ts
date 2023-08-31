@@ -8,6 +8,9 @@ export default (
 ): void | Response => {
   const { decoded, user } = res.locals;
 
+  console.log(decoded);
+  console.log(user);
+
   if (decoded.admin) return next();
 
   if (decoded.email !== user.email) {

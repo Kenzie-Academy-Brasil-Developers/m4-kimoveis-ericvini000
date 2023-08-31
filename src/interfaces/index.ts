@@ -14,6 +14,7 @@ import {
 } from "./schedules.interfaces";
 import { TSession } from "./session.interface";
 import { TCategory, TCategoryCreate } from "./category.interface";
+import { TAdminUpdateReturn } from './user.interface';
 import {
   TRealEstate,
   TRealEstateCreate,
@@ -37,4 +38,5 @@ export {
   TRealEstate,
   TRealEstateCreate,
   TRealEstateRead,
+  TAdminUpdateReturn
 };

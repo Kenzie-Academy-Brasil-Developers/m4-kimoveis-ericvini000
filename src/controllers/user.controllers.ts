@@ -25,7 +25,11 @@ const updateUserController = async (
 ): Promise<Response> => {
   const payload = req.body;
 
-  const userUpdated = await userServices.update(res.locals.user, payload);
+  const userUpdated = await userServices.update(
+    res.locals.user,
+    payload,
+    res.locals.decoded.admin
+  );
 
   return res.status(200).json(userUpdated);
 };

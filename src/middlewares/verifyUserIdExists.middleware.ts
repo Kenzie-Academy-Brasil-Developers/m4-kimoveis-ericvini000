@@ -14,7 +14,6 @@ export default async (
 
   if (!user) throw new AppError("User not found", 404);
 
-
   res.locals = { ...res.locals, user, userId };
 
   return next();

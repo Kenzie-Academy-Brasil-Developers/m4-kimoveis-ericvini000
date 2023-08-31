@@ -5,6 +5,7 @@ import {
   userSchemaReturn,
   userSchemaUpdateReturn,
   userSchemaUpdatePayload,
+  adminSchemaUpdateReturn,
 } from "./user.schemas";
 import sessionSchema from "./session.schemas";
 import {
@@ -45,4 +46,5 @@ export {
   addressSchemaCreate,
   scheduleSchemaCreate,
   scheduleSchemaPayload,
+  adminSchemaUpdateReturn,
 };

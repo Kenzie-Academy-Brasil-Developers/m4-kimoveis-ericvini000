@@ -6,9 +6,9 @@ import {
   userSchemaReturn,
   userSchemaUpdateReturn,
   userSchemaUpdatePayload,
+  adminSchemaUpdateReturn,
 } from "../schemas";
-import { DeepPartial, Repository } from "typeorm";
-import { User } from "../entities";
+import { DeepPartial } from "typeorm";
 
 export type TUser = z.infer<typeof userSchema>;
 
@@ -17,6 +17,8 @@ export type TUserCreate = z.infer<typeof userSchemaCreate>;
 export type TUserUpdatePayload = DeepPartial<typeof userSchemaUpdatePayload>;
 
 export type TUserUpdateReturn = z.infer<typeof userSchemaUpdateReturn>;
+
+export type TAdminUpdateReturn = z.infer<typeof adminSchemaUpdateReturn>;
 
 export type TUserReturn = z.infer<typeof userSchemaReturn>;
 

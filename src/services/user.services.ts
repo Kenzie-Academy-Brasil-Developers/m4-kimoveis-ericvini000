@@ -1,4 +1,5 @@
 import {
+  TAdminUpdateReturn,
   TUser,
   TUserCreate,
   TUserRead,
@@ -8,6 +9,7 @@ import {
 } from "../interfaces";
 import { userRepo } from "../repositories";
 import {
+  adminSchemaUpdateReturn,
   userSchemaRead,
   userSchemaReturn,
   userSchemaUpdateReturn,
@@ -29,13 +31,17 @@ const read = async (): Promise<TUserRead> => {
 
 const update = async (
   user: TUser,
-  payload: TUserUpdatePayload
-): Promise<TUserUpdateReturn> => {
-  console.log(payload);
-  const userUpdated: TUserUpdateReturn = await userRepo.save({
+  payload: TUserUpdatePayload,
+  isAdmin: boolean
+): Promise<TUserUpdateReturn | TAdminUpdateReturn> => {
+  const userUpdated: TUser = await userRepo.save({
     ...user,
     ...payload,
   });
+
+  if (isAdmin) {
+    return adminSchemaUpdateReturn.parse(userUpdated);
+  }
 
   return userSchemaUpdateReturn.parse(userUpdated);
 };
