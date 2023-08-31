@@ -8,7 +8,7 @@ export default (
 ): Response | void => {
   const { decoded } = res.locals;
 
-  if (!decoded.admin) throw new AppError("Insufficient Permission", 403);
+  if (!decoded.admin) throw new AppError("Insufficient permission", 403);
 
   return next();
 };

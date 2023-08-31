@@ -12,9 +12,8 @@ export default async (
 
   const user: TUser | null = await userRepo.findOneBy({ id: userId });
 
-  if (!user) throw new AppError("User not found.", 404);
+  if (!user) throw new AppError("User not found", 404);
 
-  if (user.deletedAt) throw new AppError("User already deleted");
 
   res.locals = { ...res.locals, user, userId };
 

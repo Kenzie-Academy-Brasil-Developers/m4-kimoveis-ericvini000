@@ -11,7 +11,7 @@ export default (
   if (decoded.admin) return next();
 
   if (decoded.email !== user.email) {
-    throw new AppError("Insufficient Permission", 403);
+    throw new AppError("Insufficient permission", 403);
   }
 
   return next();

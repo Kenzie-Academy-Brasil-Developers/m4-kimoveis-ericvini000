@@ -3,7 +3,8 @@ import {
   userSchemaCreate,
   userSchemaRead,
   userSchemaReturn,
-  userSchemaUpdate,
+  userSchemaUpdateReturn,
+  userSchemaUpdatePayload,
 } from "./user.schemas";
 import sessionSchema from "./session.schemas";
 import {
@@ -29,7 +30,8 @@ export {
   userSchemaCreate,
   userSchemaRead,
   userSchemaReturn,
-  userSchemaUpdate,
+  userSchemaUpdateReturn,
+  userSchemaUpdatePayload,
   sessionSchema,
   categorySchema,
   categorySchemaCreate,

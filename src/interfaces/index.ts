@@ -3,7 +3,8 @@ import {
   TUserCreate,
   TUserRead,
   TUserReturn,
-  TUserUpdate,
+  TUserUpdatePayload,
+  TUserUpdateReturn,
 } from "./user.interface";
 import {
   TSchedule,
@@ -24,7 +25,8 @@ export {
   TUserCreate,
   TUserRead,
   TUserReturn,
-  TUserUpdate,
+  TUserUpdatePayload,
+  TUserUpdateReturn,
   TSession,
   TCategory,
   TCategoryCreate,

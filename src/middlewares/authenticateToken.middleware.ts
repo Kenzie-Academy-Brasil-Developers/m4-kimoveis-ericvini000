@@ -7,11 +7,13 @@ export default (
   res: Response,
   next: NextFunction
 ): Response | void => {
-  const bearerToken: string | undefined = req.headers.authorization;
-
-  if (!bearerToken) throw new AppError("Bearer token missing");
+  const bearerToken: string | undefined = req.headers.authorization!;
+  
+  if (!bearerToken) throw new AppError("Missing bearer token", 401);
 
   const token: string = bearerToken.split(" ")[1];
+
+  if (!token) throw new AppError("Missing bearer token", 401);
 
   verify(token, process.env.SECRET_KEY!, (err, decoded) => {
     if (err) throw new AppError(err.message, 401);

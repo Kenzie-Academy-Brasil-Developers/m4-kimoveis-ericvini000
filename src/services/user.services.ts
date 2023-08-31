@@ -3,10 +3,15 @@ import {
   TUserCreate,
   TUserRead,
   TUserReturn,
-  TUserUpdate,
+  TUserUpdatePayload,
+  TUserUpdateReturn,
 } from "../interfaces";
 import { userRepo } from "../repositories";
-import { userSchemaRead, userSchemaReturn } from "../schemas";
+import {
+  userSchemaRead,
+  userSchemaReturn,
+  userSchemaUpdateReturn,
+} from "../schemas";
 
 const create = async (payload: TUserCreate): Promise<TUserReturn> => {
   const userCreated: TUserReturn = userRepo.create(payload);
@@ -24,11 +29,15 @@ const read = async (): Promise<TUserRead> => {
 
 const update = async (
   user: TUser,
-  payload: TUserUpdate
-): Promise<TUserReturn> => {
-  const userUpdated = await userRepo.save({ ...user, ...payload });
+  payload: TUserUpdatePayload
+): Promise<TUserUpdateReturn> => {
+  console.log(payload);
+  const userUpdated: TUserUpdateReturn = await userRepo.save({
+    ...user,
+    ...payload,
+  });
 
-  return userSchemaReturn.parse(userUpdated);
+  return userSchemaUpdateReturn.parse(userUpdated);
 };
 
 const destroy = async (user: TUser): Promise<void> => {
