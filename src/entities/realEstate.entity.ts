@@ -34,12 +34,12 @@ class RealEstate {
   updatedAt: Date | string;
 
   @OneToMany(() => Schedule, (s) => s.realEstate)
-  schedule: Schedule;
+  schedules: Schedule;
 
   @ManyToOne(() => Category, (c) => c.realEstate)
   category: Category;
 
-  @OneToOne(() => Address)
+  @OneToOne(() => Address, (a) => a.realEstate)
   @JoinColumn()
   address: Address;
 }

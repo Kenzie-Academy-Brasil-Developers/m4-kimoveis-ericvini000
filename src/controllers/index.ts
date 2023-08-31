@@ -8,6 +8,7 @@ import { loginController } from "./session.controllers";
 import {
   createCategoryController,
   readCategoryController,
+  retrieveCategoryController,
 } from "./category.controllers";
 import {
   createScheduleController,
@@ -30,4 +31,5 @@ export {
   retrieveScheduleController,
   createRealEstateController,
   readRealEstateController,
+  retrieveCategoryController,
 };

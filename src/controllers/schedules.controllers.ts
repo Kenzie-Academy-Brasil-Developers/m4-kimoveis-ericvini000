@@ -19,6 +19,11 @@ const createScheduleController = async (
   return res.status(201).json(newSchedule);
 };
 
-const retrieveScheduleController = async (req: Request, res: Response) => {};
+const retrieveScheduleController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  return res.status(200).json(res.locals.realEstate);
+};
 
 export { createScheduleController, retrieveScheduleController };

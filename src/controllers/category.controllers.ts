@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { categoryServices } from "../services";
-import { TCategoryRead } from "../interfaces/category.interface";
+import { TCategory, TCategoryRead } from "../interfaces/category.interface";
 
 const createCategoryController = async (
   req: Request,
@@ -20,4 +20,15 @@ const readCategoryController = async (
   return res.status(200).json(categories);
 };
 
-export { createCategoryController, readCategoryController };
+const retrieveCategoryController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  return res.status(200).json(res.locals.categories);
+};
+
+export {
+  createCategoryController,
+  readCategoryController,
+  retrieveCategoryController,
+};

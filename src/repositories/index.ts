@@ -1,13 +1,7 @@
-import userRepository from "./user.repository";
-import categoryRepository from "./category.repository";
+import userRepo from "./user.repository";
+import categoryRepo from "./category.repository";
 import scheduleRepo from "./schedule.repository";
 import realEstateRepo from "./realEstate.repository";
 import addressRepo from "./address.repository";
 
-export {
-  userRepository,
-  categoryRepository,
-  scheduleRepo,
-  realEstateRepo,
-  addressRepo,
-};
+export { userRepo, categoryRepo, scheduleRepo, realEstateRepo, addressRepo };

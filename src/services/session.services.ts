@@ -1,13 +1,13 @@
 import { compare } from "bcryptjs";
 import { AppError } from "../errors";
 import { TSession, TUser } from "../interfaces";
-import { userRepository } from "../repositories";
+import { userRepo } from "../repositories";
 import { sign } from "jsonwebtoken";
 
 const create = async (payload: TSession): Promise<string> => {
   const { email, password } = payload;
 
-  const user: TUser | null = await userRepository.findOneBy({ email });
+  const user: TUser | null = await userRepo.findOneBy({ email });
   
   if (!user) throw new AppError("User not exists", 404);
 

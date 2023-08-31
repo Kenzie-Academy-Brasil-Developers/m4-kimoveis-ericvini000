@@ -7,9 +7,12 @@ export default async (
   res: Response,
   next: NextFunction
 ): Promise<Response | void> => {
-  const realEstateId: number = Number(req.body.realEstateId);
+  const realEstateId: number = Number(req.params.id);
 
-  const realEstate: any = await realEstateRepo.findOneBy({ id: realEstateId });
+  const realEstate: any = await realEstateRepo.findOne({
+    where: { id: realEstateId },
+    relations: { schedules: true },
+  });
 
   if (!realEstate) throw new AppError("Estate not found.", 404);
 

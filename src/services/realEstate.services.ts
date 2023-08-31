@@ -1,10 +1,14 @@
-import { TRealEstateCreate } from "../interfaces";
 import { addressRepo, realEstateRepo } from "../repositories";
 
-const create = async (payload: any) => {
-  const newRealEstate = realEstateRepo.create(payload);
+const create = async ({ address, ...payload }: any) => {
+  const newAddress = addressRepo.create(address);
+  await addressRepo.save(newAddress);
 
-  await addressRepo.save(payload.address);
+  const newRealEstate = realEstateRepo.create({
+    address: newAddress,
+    ...payload,
+  });
+
   await realEstateRepo.save(newRealEstate);
 
   return newRealEstate;

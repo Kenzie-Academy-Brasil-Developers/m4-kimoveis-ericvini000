@@ -7,6 +7,7 @@ import verifyIsAdmin from "./verifyIsAdmin.middleware";
 import verifyUserPermission from "./verifyUserPermission.middleware";
 import verifyCategoryName from "./verifyCategoryName.middleware";
 import verifyRealEstateId from "./verifyRealEstateId.middleware";
+import verifyCategoryIdExists from "./verifyCategoryIdExists.middleware";
 
 export default {
   errorHandler,
@@ -18,4 +19,5 @@ export default {
   verifyUserPermission,
   verifyCategoryName,
   verifyRealEstateId,
+  verifyCategoryIdExists,
 };

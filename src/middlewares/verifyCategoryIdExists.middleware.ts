@@ -7,11 +7,16 @@ export default async (
   res: Response,
   next: NextFunction
 ): Promise<Response | void> => {
-  const { name } = req.body;
+  const categoryId = Number(req.params.id);
 
-  const nameExists = await categoryRepo.findOneBy({ name });
+  const categories = await categoryRepo.findOne({
+    where: { id: categoryId },
+    relations: { realEstate: true },
+  });
 
-  if (nameExists) throw new AppError("Name already exists.", 409);
+  if (!categories) throw new AppError("Category not exists.", 409);
+
+  res.locals.categories = categories;
 
   return next();
 };

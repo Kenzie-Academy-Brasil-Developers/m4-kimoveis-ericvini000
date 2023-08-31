@@ -15,6 +15,4 @@ const create = async (payload: TSchedulePayload, userId: any, realEstateId: Real
   return newSchedule;
 };
 
-const retrieve = (id: number) => {};
-
-export default { create, retrieve };
+export default { create,  };

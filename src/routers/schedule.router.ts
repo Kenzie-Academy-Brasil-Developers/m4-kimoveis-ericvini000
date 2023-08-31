@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
   createScheduleController,
-  readCategoryController,
+  retrieveScheduleController,
 } from "../controllers";
 import middlewares from "../middlewares";
 
@@ -14,6 +14,10 @@ scheduleRouter.post(
   createScheduleController
 );
 
-scheduleRouter.get("/realEstate/:id", readCategoryController);
+scheduleRouter.get(
+  "/realEstate/:id",
+  middlewares.verifyRealEstateId,
+  retrieveScheduleController
+);
 
 export default scheduleRouter;

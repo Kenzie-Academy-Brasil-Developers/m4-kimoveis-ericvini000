@@ -5,19 +5,19 @@ import {
   TUserReturn,
   TUserUpdate,
 } from "../interfaces";
-import { userRepository } from "../repositories";
+import { userRepo } from "../repositories";
 import { userSchemaRead, userSchemaReturn } from "../schemas";
 
 const create = async (payload: TUserCreate): Promise<TUserReturn> => {
-  const userCreated: TUserReturn = userRepository.create(payload);
+  const userCreated: TUserReturn = userRepo.create(payload);
 
-  await userRepository.save(userCreated);
+  await userRepo.save(userCreated);
 
   return userSchemaReturn.parse(userCreated);
 };
 
 const read = async (): Promise<TUserRead> => {
-  const userList: TUserRead = await userRepository.find();
+  const userList: TUserRead = await userRepo.find();
 
   return userSchemaRead.parse(userList);
 };
@@ -26,13 +26,13 @@ const update = async (
   user: TUser,
   payload: TUserUpdate
 ): Promise<TUserReturn> => {
-  const userUpdated = await userRepository.save({ ...user, ...payload });
+  const userUpdated = await userRepo.save({ ...user, ...payload });
 
   return userSchemaReturn.parse(userUpdated);
 };
 
 const destroy = async (user: TUser): Promise<void> => {
-  await userRepository.softRemove(user);
+  await userRepo.softRemove(user);
 };
 
 export default { create, read, update, destroy };

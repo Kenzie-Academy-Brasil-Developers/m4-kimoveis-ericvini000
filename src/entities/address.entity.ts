@@ -21,8 +21,8 @@ class Address {
   @Column({ type: "varchar", length: 2 })
   state: string;
 
-  @OneToOne(() => RealEstate)
-  realEstate: RealEstate
+  @OneToOne(() => RealEstate, (r) => r.address)
+  realEstate: RealEstate;
 }
 
 export default Address;
