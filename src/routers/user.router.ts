@@ -1,6 +1,6 @@
 import { Router } from "express";
 import middlewares from "../middlewares";
-import { userSchemaCreate } from "../schemas";
+import { userSchemaCreate, userSchemaUpdate } from "../schemas";
 import {
   createUserController,
   destroyUserController,
@@ -26,6 +26,7 @@ userRouter.get(
 
 userRouter.patch(
   "/:id",
+  middlewares.validateBody(userSchemaUpdate),
   middlewares.authenticateToken,
   middlewares.verifyUserIdExists,
   middlewares.verifyEmailExists,

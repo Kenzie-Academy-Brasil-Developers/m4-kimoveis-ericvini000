@@ -16,7 +16,7 @@ const create = async ({ address, ...payload }: any) => {
 
 const read = async () => {
   return await realEstateRepo.find({
-    relations: { schedule: true, category: true, address: true },
+    relations: { schedules: true, category: true, address: true },
   });
 };
 
