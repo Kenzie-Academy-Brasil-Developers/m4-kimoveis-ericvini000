@@ -9,14 +9,14 @@ const create = async (payload: TSession): Promise<string> => {
 
   const user: TUser | null = await userRepo.findOneBy({ email });
   
-  if (!user) throw new AppError("User not exists", 404);
+  if (!user) throw new AppError("Invalid credentials", 401);
 
-  if(user.deletedAt) throw new AppError("User already deleted.")
+  if(user.deletedAt) throw new AppError("User already deleted.", 404)
 
   const verifyPassword = await compare(password, user.password);
 
   if (!verifyPassword || user.email !== email) {
-    throw new AppError("Wrong email/password", 401);
+    throw new AppError("Invalid credentials", 401);
   }
 
   const token: string = sign(
