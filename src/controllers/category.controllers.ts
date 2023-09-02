@@ -8,7 +8,7 @@ const createCategoryController = async (
 ): Promise<Response> => {
   const newCategory = await categoryServices.create(req.body);
 
-  return res.status(200).json(newCategory);
+  return res.status(201).json(newCategory);
 };
 
 const readCategoryController = async (
@@ -24,7 +24,7 @@ const retrieveCategoryController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  return res.status(200).json(res.locals.categories);
+  return res.status(200).json(res.locals.category);
 };
 
 export {

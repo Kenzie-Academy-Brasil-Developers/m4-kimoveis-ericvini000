@@ -24,17 +24,17 @@ class RealEstate {
   @Column({ type: "decimal", precision: 12, scale: 2, default: 0 })
   value: number | string;
 
-  @Column({ type: "float" })
+  @Column({ type: "int" })
   size: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: "date" })
   createdAt: Date | string;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: "date" })
   updatedAt: Date | string;
 
   @OneToMany(() => Schedule, (s) => s.realEstate)
-  schedules: Schedule;
+  schedules: Schedule[];
 
   @ManyToOne(() => Category, (c) => c.realEstate)
   category: Category;

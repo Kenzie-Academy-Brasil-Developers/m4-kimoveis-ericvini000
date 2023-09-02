@@ -9,14 +9,14 @@ export default async (
 ): Promise<Response | void> => {
   const categoryId = Number(req.params.id);
 
-  const categories = await categoryRepo.findOne({
+  const category = await categoryRepo.findOne({
     where: { id: categoryId },
     relations: { realEstate: true },
   });
 
-  if (!categories) throw new AppError("Category not exists.", 409);
+  if (!category) throw new AppError("Category not found", 404);
 
-  res.locals.categories = categories;
+  res.locals.category = category;
 
   return next();
 };

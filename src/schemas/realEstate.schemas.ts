@@ -4,10 +4,13 @@ import { categorySchema, categorySchemaCreate } from "./category.schemas";
 
 const realEstateSchema = z.object({
   id: z.number().positive(),
-  value: z.number().or(z.string()).default(0),
-  size: z.number(),
+  value: z
+    .number()
+    .or(z.string())
+    .default(() => 0),
+  size: z.number().positive(),
   address: addressSchema,
-  category: z.number().positive(),
+  category: categorySchema,
   sold: z.boolean().default(() => false),
   createdAt: z.string().or(z.date()),
   updatedAt: z.string().or(z.date()),
@@ -20,7 +23,10 @@ const realEstateSchemaCreate = realEstateSchema
     updatedAt: true,
     createdAt: true,
   })
-  .extend({ address: addressSchemaCreate });
+  .extend({
+    address: addressSchemaCreate,
+    category: categorySchemaCreate,
+  });
 
 const realEstateSchemaRead = realEstateSchema.array();
 

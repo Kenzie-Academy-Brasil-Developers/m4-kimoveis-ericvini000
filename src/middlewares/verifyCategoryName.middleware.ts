@@ -11,7 +11,7 @@ export default async (
 
   const nameExists = await categoryRepo.findOneBy({ name });
 
-  if (nameExists) throw new AppError("Name already exists.", 409);
+  if (nameExists) throw new AppError("Category already exists", 409);
 
   return next();
 };

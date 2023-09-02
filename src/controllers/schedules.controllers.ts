@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
 import { scheduleServices } from "../services";
+import { TSchedulePayload, TUser } from "../interfaces";
+import { userRepo } from "../repositories";
+import { AppError } from "../errors";
 
 const createScheduleController = async (
   req: Request,
@@ -8,15 +11,12 @@ const createScheduleController = async (
   const {
     decoded: { sub },
     realEstate,
+    user,
   } = res.locals;
 
-  const newSchedule = await scheduleServices.create(
-    req.body,
-    Number(sub),
-    realEstate
-  );
+  await scheduleServices.create({ ...req.body, user, realEstate });
 
-  return res.status(201).json(newSchedule);
+  return res.status(201).json({ message: "Schedule created" });
 };
 
 const retrieveScheduleController = async (

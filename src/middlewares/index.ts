@@ -8,6 +8,8 @@ import verifyUserPermission from "./verifyUserPermission.middleware";
 import verifyCategoryName from "./verifyCategoryName.middleware";
 import verifyRealEstateId from "./verifyRealEstateId.middleware";
 import verifyCategoryIdExists from "./verifyCategoryIdExists.middleware";
+import verifyUserHourExists from "./verifyUserHourExists.middleware";
+import verifyAddressExists from "./verifyAddressExists.middleware";
 
 export default {
   errorHandler,
@@ -20,4 +22,6 @@ export default {
   verifyCategoryName,
   verifyRealEstateId,
   verifyCategoryIdExists,
+  verifyUserHourExists,
+  verifyAddressExists,
 };
