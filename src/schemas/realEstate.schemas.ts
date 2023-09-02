@@ -22,10 +22,11 @@ const realEstateSchemaCreate = realEstateSchema
     sold: true,
     updatedAt: true,
     createdAt: true,
+    category: true,
   })
   .extend({
     address: addressSchemaCreate,
-    category: categorySchemaCreate,
+    categoryId: z.number().positive(),
   });
 
 const realEstateSchemaRead = realEstateSchema.array();

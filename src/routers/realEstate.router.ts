@@ -13,7 +13,7 @@ realEstateRouter.post(
   middlewares.authenticateToken,
   middlewares.verifyIsAdmin,
   middlewares.validateBody(realEstateSchemaCreate),
-  // middlewares.verifyAddressExists,
+  middlewares.verifyAddressExists,
   createRealEstateController
 );
 

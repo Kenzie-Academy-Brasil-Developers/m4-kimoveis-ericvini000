@@ -1,27 +1,22 @@
 import { Category } from "../entities";
-import { AppError } from "../errors";
-import { TRealEstate, TRealEstateCreate } from "../interfaces";
+import { TRealEstate, TRealEstateCreate, TRealEstateRead } from "../interfaces";
 import { addressRepo, categoryRepo, realEstateRepo } from "../repositories";
 
 const create = async ({
   address,
-  category,
+  categoryId,
   ...payload
 }: TRealEstateCreate): Promise<TRealEstate> => {
   const newAddress = addressRepo.create(address);
   await addressRepo.save(newAddress);
 
-  const categoryFound: Category | null = await categoryRepo.findOne({
-    where: { name: category.name },
+  const categoryFound: Category | null = await categoryRepo.findOneBy({
+    id: categoryId,
   });
-
-  if (!categoryFound) {
-    throw new AppError("Category not found", 404);
-  }
 
   const newRealEstate: TRealEstate = realEstateRepo.create({
     address: newAddress,
-    category: categoryFound,
+    category: categoryFound!,
     ...payload,
   });
 
@@ -30,7 +25,7 @@ const create = async ({
   return newRealEstate;
 };
 
-const read = async () => {
+const read = async (): Promise<TRealEstateRead> => {
   return await realEstateRepo.find({
     relations: { address: true },
   });
