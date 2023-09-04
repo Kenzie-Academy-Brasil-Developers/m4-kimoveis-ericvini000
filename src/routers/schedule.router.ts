@@ -13,14 +13,18 @@ scheduleRouter.post(
   middlewares.authenticateToken,
   middlewares.validateBody(scheduleSchemaCreate),
   middlewares.verifyRealEstateId,
+  middlewares.verifyRealEstateDateExists,
+  middlewares.verifyUserDateExists,
   middlewares.verifyUserHourExists,
-  middlewares.verifyCommercialDay,
   middlewares.verifyCommercialHour,
-  // createScheduleController
+  middlewares.verifyCommercialDay,
+  createScheduleController
 );
 
 scheduleRouter.get(
   "/realEstate/:id",
+  middlewares.authenticateToken,
+  middlewares.verifyIsAdmin,
   middlewares.verifyRealEstateId,
   retrieveScheduleController
 );

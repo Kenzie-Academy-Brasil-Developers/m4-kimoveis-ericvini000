@@ -12,6 +12,8 @@ import verifyUserHourExists from "./verifyUserDateExists.middleware";
 import verifyAddressExists from "./verifyAddressExists.middleware";
 import verifyCommercialHour from "./verifyCommercialHour.middleware";
 import verifyCommercialDay from "./verifyCommercialDay.middleware";
+import verifyRealEstateDateExists from "./verifyRealEstateDateExists.middleware";
+import verifyUserDateExists from "./verifyUserDateExists.middleware";
 
 export default {
   errorHandler,
@@ -28,4 +30,6 @@ export default {
   verifyAddressExists,
   verifyCommercialHour,
   verifyCommercialDay,
+  verifyRealEstateDateExists,
+  verifyUserDateExists,
 };

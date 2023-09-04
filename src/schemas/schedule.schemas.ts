@@ -14,8 +14,8 @@ const scheduleSchemaPayload = scheduleSchema.omit({
 });
 
 const scheduleSchemaCreate = scheduleSchema
-  .omit({ id: true, user: true })
-  .extend({ realEstate: z.number().positive() });
+  .omit({ id: true, user: true, realEstate: true })
+  .extend({ realEstateId: z.number().positive() });
 
 const scheduleSchemaRead = scheduleSchema.array();
 

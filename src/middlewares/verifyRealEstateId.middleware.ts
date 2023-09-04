@@ -9,14 +9,14 @@ export default async (
   next: NextFunction
 ): Promise<Response | void> => {
   const realEstateId: number =
-    Number(req.params.id) | Number(req.body.realEstate);
+    Number(req.params.id) | Number(req.body.realEstateId);
 
   const realEstate: RealEstate | null = await realEstateRepo.findOne({
     where: { id: realEstateId },
     relations: { address: true },
   });
 
-  if (!realEstate) throw new AppError("Estate not found.", 404);
+  if (!realEstate) throw new AppError("RealEstate not found", 404);
 
   res.locals = { ...res.locals, realEstateId, realEstate };
 
