@@ -8,16 +8,16 @@ export default async (
   res: Response,
   next: NextFunction
 ): Promise<Response | void> => {
-  const realEstateId: number = Number(req.body.realEstateId);
+  const realEstateId: number = Number(req.params.id);
 
-  const realEstate: RealEstate | null = await realEstateRepo.findOne({
+  const realEstates: RealEstate | null = await realEstateRepo.findOne({
     where: { id: realEstateId },
-    relations: { address: true },
+    relations: { address: true, category: true, schedules: { user: true } },
   });
 
-  if (!realEstate) throw new AppError("RealEstate not found", 404);
+  if (!realEstates) throw new AppError("RealEstate not found", 404);
 
-  res.locals = { ...res.locals, realEstateId, realEstate };
+  res.locals = { ...res.locals, realEstateId, realEstates };
 
   return next();
 };

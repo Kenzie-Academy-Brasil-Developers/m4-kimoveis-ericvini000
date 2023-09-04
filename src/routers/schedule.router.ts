@@ -25,7 +25,7 @@ scheduleRouter.get(
   "/realEstate/:id",
   middlewares.authenticateToken,
   middlewares.verifyIsAdmin,
-  middlewares.verifyRealEstateId,
+  middlewares.verifyRealEstates,
   retrieveScheduleController
 );
 
