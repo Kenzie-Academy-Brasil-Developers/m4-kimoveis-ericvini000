@@ -2,13 +2,14 @@ import { NextFunction, Request, Response } from "express";
 import { scheduleRepo, userRepo } from "../repositories";
 import { AppError } from "../errors";
 import { Schedule, User } from "../entities";
+import { TSchedule } from "../interfaces";
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   const { realEstateId } = res.locals;
 
   const { date, hour } = req.body;
 
-  const realEstateSchedules = await scheduleRepo
+  const realEstateSchedules: TSchedule[] | null = await scheduleRepo
     .createQueryBuilder("s")
     .where("s.realEstateId = :realEstateId", {
       realEstateId,

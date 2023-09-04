@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { addressRepo, categoryRepo } from "../repositories";
 import { AppError } from "../errors";
+import { Address } from "../entities";
 
 export default async (
   req: Request,
@@ -9,7 +10,7 @@ export default async (
 ): Promise<Response | void> => {
   const { street, zipCode, number, city, state } = req.body.address;
 
-  const addressExists = await addressRepo.exist({
+  const addressExists: boolean = await addressRepo.exist({
     where: { street, zipCode, number, city, state },
   });
 

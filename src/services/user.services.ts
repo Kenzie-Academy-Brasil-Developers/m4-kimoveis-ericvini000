@@ -31,8 +31,7 @@ const read = async (): Promise<TUserRead> => {
 
 const update = async (
   user: TUser,
-  payload: TUserUpdatePayload,
-  isAdmin: boolean
+  payload: TUserUpdatePayload
 ): Promise<TAdminUpdateReturn> => {
   const userUpdated: TUser = await userRepo.save({
     ...user,

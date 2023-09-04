@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors";
 import { userRepo } from "../repositories";
+import { TUser } from "../interfaces";
 
 export default async (
   req: Request,
@@ -11,7 +12,7 @@ export default async (
 
   if (!email) return next();
 
-  const emailExists = await userRepo.findOneBy({ email: email });
+  const emailExists: TUser | null = await userRepo.findOneBy({ email: email });
 
   if (emailExists) throw new AppError("Email already exists", 409);
 

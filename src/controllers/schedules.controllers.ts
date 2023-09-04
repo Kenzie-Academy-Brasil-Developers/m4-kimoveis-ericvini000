@@ -8,11 +8,7 @@ const createScheduleController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const {
-    decoded: { sub },
-    realEstate,
-    user,
-  } = res.locals;
+  const { realEstate, user } = res.locals;
 
   await scheduleServices.create({ ...req.body, user, realEstate });
 

@@ -6,7 +6,7 @@ const createCategoryController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const newCategory = await categoryServices.create(req.body);
+  const newCategory: TCategory = await categoryServices.create(req.body);
 
   return res.status(201).json(newCategory);
 };
