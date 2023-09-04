@@ -6,11 +6,11 @@ export default (
   res: Response,
   next: NextFunction
 ): void | Response => {
-  const { decoded, user } = res.locals;
+  const { decoded, userId } = res.locals;
 
   if (decoded.admin) return next();
 
-  if (decoded.email !== user.email) {
+  if (Number(decoded.sub) !== userId) {
     throw new AppError("Insufficient permission", 403);
   }
 

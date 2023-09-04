@@ -7,7 +7,7 @@ export default (
   res: Response,
   next: NextFunction
 ): Response | void => {
-  const bearerToken: string | undefined = req.headers.authorization!;
+  const bearerToken: string | undefined = req.headers.authorization;
   
   if (!bearerToken) throw new AppError("Missing bearer token", 401);
 

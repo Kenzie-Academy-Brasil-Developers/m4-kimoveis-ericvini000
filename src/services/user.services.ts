@@ -33,17 +33,13 @@ const update = async (
   user: TUser,
   payload: TUserUpdatePayload,
   isAdmin: boolean
-): Promise<TUserUpdateReturn | TAdminUpdateReturn> => {
+): Promise<TAdminUpdateReturn> => {
   const userUpdated: TUser = await userRepo.save({
     ...user,
     ...payload,
   });
 
-  if (isAdmin) {
-    return adminSchemaUpdateReturn.parse(userUpdated);
-  }
-
-  return userSchemaUpdateReturn.parse(userUpdated);
+  return adminSchemaUpdateReturn.parse(userUpdated);
 };
 
 const destroy = async (user: TUser): Promise<void> => {
