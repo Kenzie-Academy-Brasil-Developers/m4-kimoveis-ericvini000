@@ -39,7 +39,7 @@ class User {
   deletedAt: Date | string | null;
 
   @OneToMany(() => Schedule, (schedule) => schedule.user)
-  schedule: Schedule[];
+  schedules: Schedule[];
 
   @BeforeInsert()
   @BeforeUpdate()

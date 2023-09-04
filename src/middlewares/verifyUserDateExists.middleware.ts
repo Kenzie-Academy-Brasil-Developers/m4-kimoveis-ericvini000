@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { scheduleRepo, userRepo } from "../repositories";
 import { AppError } from "../errors";
+import { Schedule, User } from "../entities";
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   const {
@@ -8,15 +9,13 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     realEstateId,
   } = res.locals;
 
-  const user = await userRepo.findOneBy({ id: Number(userId) });
+  const user = await userRepo.findOne({ where: { id: Number(userId) } });
 
-  if (user?.deletedAt) throw new AppError("User not found", 404);
+  // const userDates = 
 
-  //   const schedule = await scheduleRepo.findOneBy({ user: userId });
+  // console.log(userDates);
 
-  //   console.log(schedule)
-
-  res.locals = { ...res.locals, user };
+  // res.locals = { ...res.locals, user };
 
   return next();
 };

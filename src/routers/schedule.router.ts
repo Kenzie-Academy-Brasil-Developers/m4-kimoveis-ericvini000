@@ -10,11 +10,13 @@ const scheduleRouter: Router = Router();
 
 scheduleRouter.post(
   "",
-  middlewares.validateBody(scheduleSchemaCreate),
   middlewares.authenticateToken,
+  middlewares.validateBody(scheduleSchemaCreate),
   middlewares.verifyRealEstateId,
   middlewares.verifyUserHourExists,
-  createScheduleController
+  middlewares.verifyCommercialDay,
+  middlewares.verifyCommercialHour,
+  // createScheduleController
 );
 
 scheduleRouter.get(
